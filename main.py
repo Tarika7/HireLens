@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from app.routes.auth import router as auth_router
 
 # Create the FastAPI application
 app = FastAPI(
@@ -8,9 +9,8 @@ app = FastAPI(
 )
 
 # Home Route
+app.include_router(auth_router)
+
 @app.get("/")
-def home():
-    return {
-        "message": "Welcome to HireLens!",
-        "status": "Application is running successfully."
-    }
+def root():
+    return {"message": "HireLens API is running"}
