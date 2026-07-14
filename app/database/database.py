@@ -41,3 +41,7 @@ def get_db():
         yield db
     finally:
         db.close()
+
+# Create all database tables
+def create_tables():
+    Base.metadata.create_all(bind=engine)

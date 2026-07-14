@@ -2,6 +2,7 @@ from sqlalchemy import Column, Integer, String, DateTime
 from sqlalchemy.sql import func
 
 from app.database.database import Base
+from sqlalchemy.orm import relationship
 
 
 class User(Base):
@@ -25,3 +26,9 @@ class User(Base):
 
     # Timestamp
     created_at = Column(DateTime(timezone=True), server_default=func.now())
+
+    jobs = relationship(
+    "Job",
+    back_populates="recruiter",
+    cascade="all, delete-orphan"
+)

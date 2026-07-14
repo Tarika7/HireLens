@@ -32,3 +32,11 @@ class UserResponse(BaseModel):
 
     class Config:
         from_attributes = True
+
+class Token(BaseModel):
+    """
+    Response returned after successful login.
+    """
+
+    access_token: str
+    token_type: str
