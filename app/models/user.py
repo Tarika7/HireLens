@@ -32,3 +32,8 @@ class User(Base):
     back_populates="recruiter",
     cascade="all, delete-orphan"
 )
+    resumes = relationship(
+        "Resume",
+        back_populates="recruiter",
+        cascade="all, delete-orphan"
+    )

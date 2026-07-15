@@ -27,8 +27,14 @@ class Job(Base):
     # Relationship
     recruiter = relationship("User", back_populates="jobs")
 
-    #resumes = relationship(
-     #   "Resume",
-      #  back_populates="job",
-      #  cascade="all, delete-orphan"
-    #)
+    resumes = relationship(
+        "Resume",
+        back_populates="job",
+        cascade="all, delete-orphan"
+    )
+
+    matching_results = relationship(
+    "MatchingResult",
+    back_populates="job",
+    cascade="all, delete-orphan"
+)
