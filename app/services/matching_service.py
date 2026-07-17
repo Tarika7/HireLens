@@ -1,12 +1,13 @@
 from sqlalchemy.orm import Session
 
+from app.models import resume
 from app.models.resume import Resume
 from app.models.job import Job
 from app.models.parsed_resume import ParsedResume
 from app.models.matching_result import MatchingResult
 
 from app.matching.matcher import calculate_match_score
-
+from app.services.recommendation_service import update_recommendation
 
 def build_match_reasons(parsed_resume, job):
     """
@@ -131,6 +132,10 @@ def run_matching(
         db.commit()
         db.refresh(existing)
 
+        update_recommendation(
+        db=db,
+        resume_id=resume.id
+    )
         return existing
 
     # -----------------------------
@@ -147,7 +152,14 @@ def run_matching(
     )
 
     db.add(result)
+
     db.commit()
+
     db.refresh(result)
+
+    update_recommendation(
+    db=db,
+    resume_id=resume.id
+)
 
     return result

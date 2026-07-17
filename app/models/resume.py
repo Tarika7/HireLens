@@ -84,3 +84,8 @@ class Resume(Base):
         uselist=False,
         cascade="all, delete-orphan"
     )
+    verification_reports = relationship(
+    "VerificationReport",
+    back_populates="resume",
+    cascade="all, delete-orphan"
+)

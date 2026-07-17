@@ -12,7 +12,8 @@ from app.models.resume import Resume
 from app.api.resumes import router as resume_router
 from app.models.parsed_resume import ParsedResume
 from app.api.matching import router as matching_router
-
+from app.models.verification_report import VerificationReport
+from app.api import github
 
 app = FastAPI(
     title="HireLens",
@@ -21,7 +22,7 @@ app = FastAPI(
 )
 
 app.include_router(resume_router)
-
+app.include_router(github.router)
 @app.on_event("startup")
 def startup():
     create_tables()

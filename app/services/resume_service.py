@@ -58,7 +58,12 @@ def save_resume(
     # -----------------------------
     # Extract PDF text
     # -----------------------------
-    text = extract_text_from_pdf(file_path)
+    text = extract_text_from_pdf(file_path) 
+
+    print("=" * 80)
+    print("EXTRACTED TEXT")
+    print(text[:3000])
+    print("=" * 80)
 
     # -----------------------------
     # Create Resume record
@@ -81,7 +86,7 @@ def save_resume(
     # Parse Resume
     # -----------------------------
     parsed_data = parse_resume(text)
-
+    print(parsed_data)
     # -----------------------------
     # Save Parsed Resume
     # -----------------------------
